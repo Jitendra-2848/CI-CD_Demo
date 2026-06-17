@@ -1,7 +1,7 @@
 name: Demo Scheduler 
 on:
   schedule:
-    - cron: '*/1 * * * *'
+    - cron: '*/5 * * * *'
 jobs:
   hello_world:
     runs-on: ubuntu-latest
