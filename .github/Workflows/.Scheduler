@@ -1,0 +1,10 @@
+name: Demo Scheduler 
+on:
+  schedule:
+    - cron: '*/1 * * * *'
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo current time
+        run: echo "Current server time is ${date}"
