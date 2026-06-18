@@ -1,0 +1,14 @@
+name: pull workflow
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  pull-description:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull-detail
+        run: |
+          echo "latest PR is ${{github.sha}}"
+          echo "PR by ${{github.event.pull_request.user.login}}"
+          echo "PR title is ${{github.event.pull_request.title}}"
