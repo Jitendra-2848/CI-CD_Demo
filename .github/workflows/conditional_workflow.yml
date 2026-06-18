@@ -8,8 +8,8 @@ jobs:
     runs-on : ubuntu-latest
     steps:
       - name : print message
-        if: github.repository == "Jitendra-2848/CI-CD_Demo"
+        if: github.repository == 'Jitendra-2848/CI-CD_Demo'
         run: echo "Condition is true"
       - name : print 
-        if: github.repository != "Jitendra-2848/CI-CD_Demo"
+        if: github.repository != 'Jitendra-2848/CI-CD_Demo'
         run: echo "condition is false"
