@@ -1,0 +1,50 @@
+name: Expression Demo in actions
+
+on:
+  push:
+    branches:
+      - main
+  issues:
+    types: [opened, labeled]
+
+jobs:
+  expression-demo:
+    if: github.repository == 'Jitendra-2848/CI-CD_Demo'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: contains function
+        if: contains('Hello world', 'world')
+        run: echo "contains world"
+
+      - name: startsWith check
+        if: startsWith('hello world', 'hello')
+        run: echo "it starts with hello"
+
+      - name: endsWith check
+        if: endsWith('Hello world', 'world')
+        run: echo "it ends with world"
+
+      - name: format string
+        run: echo ${{ format('Hello {0} {1} {2} {3}', 'Kalash', 'saini', ',', 'waiting...') }}
+
+      - name: join issue labels
+        if: github.event_name == 'issues'
+        run: echo "Issue labels ${{ join(github.event.issue.labels.*.name, ', ') }}"
+
+      - name: Convert job context to JSON
+        run: echo "Job context ${{ toJSON(github.job) }}"
+
+      - name: Parse JSON string
+        run: echo "Parsed JSON ${{ fromJSON('{\"hello\":\"world\"}').hello }}"
+
+      - name: Hash files
+        run: echo "Hash of files ${{ hashFiles('**/package-lock.json', '**/Gemfile.lock') }}"
+
+      - name: Job success message
+        if: success()
+        run: echo "Job succeeded 🎉"
+
+      - name: Job failure message
+        if: failure()
+        run: echo "Job failed ❌"
