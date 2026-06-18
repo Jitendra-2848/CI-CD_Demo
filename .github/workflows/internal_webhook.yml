@@ -1,0 +1,19 @@
+name: Internal Webhook
+on:
+  workflow_run:
+    workflows: ["push-workflow"]
+    types:
+      - completed
+
+jobs:
+  handle-internal-webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Handle Internal Webhook Event
+        env:
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+        run: |
+          echo "Triggered internally by the completion of push-workflow!"
+          echo "Workflow Run ID: $RUN_ID"
+          echo "Workflow Conclusion: $CONCLUSION"

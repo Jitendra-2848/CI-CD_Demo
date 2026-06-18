@@ -1,0 +1,16 @@
+name: External Webhook
+on:
+  repository_dispatch:
+    types:
+      - external-web
+
+jobs:
+  handle-external-webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Webhook Data
+        env:
+          PAYLOAD: ${{ toJson(github.event.client_payload) }}
+        run: |
+          echo "Triggered by an external webhook via repository_dispatch!"
+          echo "Received payload: $PAYLOAD"
