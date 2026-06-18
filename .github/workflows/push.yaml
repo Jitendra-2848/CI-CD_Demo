@@ -1,0 +1,13 @@
+name: push-workflow
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Push-Description:
+    runs-on: ubuntu-latest
+    steps:
+      - name: push detail
+        run: |
+          echo "Commit ${{ github.sha }}"  
+          echo "Message ${{ github.event.head_commit.message }}"
