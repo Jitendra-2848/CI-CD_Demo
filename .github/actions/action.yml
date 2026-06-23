@@ -19,3 +19,7 @@ runs:
     - name: Run tests
       run: bun test
       shell: bash
+    
+    - name: Run project
+      run: bun index.ts 
+      shell: bash
