@@ -8,4 +8,4 @@ inputs:
 
 runs:
   using: node20
-  main: ../../../Action/index.ts
+  main: dist/index.js
