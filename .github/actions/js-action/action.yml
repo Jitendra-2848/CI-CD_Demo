@@ -1,0 +1,11 @@
+name: JS Action Demo
+description: "js action demo"
+
+inputs:
+  username:
+    description: Username
+    required: true
+
+runs:
+  using: node20
+  main: ../../../Action/index.ts

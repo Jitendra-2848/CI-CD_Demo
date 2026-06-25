@@ -1,0 +1,13 @@
+name: Docker Action Demo
+description: "docker action demo"
+inputs:
+  username:
+    description: Username
+    required: true
+
+runs:
+  using: docker
+  image: ../../../Dockerfile
+
+  args:
+    - ${{ inputs.username }}

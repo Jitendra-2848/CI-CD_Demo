@@ -1,0 +1,33 @@
+name: Reusable Workflow Demo
+
+on:
+  workflow_call:
+    inputs:
+      username:
+        description: "Name of user"
+        required: true
+        type: string
+
+    outputs:
+      message:
+        description: "Greeting message"
+        value: ${{ jobs.reusable_job.outputs.result }}
+
+jobs:
+  reusable_job:
+    runs-on: ubuntu-latest
+
+    outputs:
+      result: ${{ steps.set_output.outputs.message }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Print Greeting
+        id: greet
+        run: echo "Hello ${{ inputs.username }}"
+
+      - name: Set Output
+        id: set_output
+        run: echo "message=Hello ${{ inputs.username }} from reusable workflow" >> $GITHUB_OUTPUT

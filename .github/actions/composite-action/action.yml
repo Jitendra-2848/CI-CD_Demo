@@ -1,0 +1,17 @@
+name: Composite Action Demo
+description: "composite action demo"
+
+inputs:
+  username:
+    description: Username
+    required: true
+
+runs:
+  using: composite
+
+  steps:
+    - shell: bash
+      run: echo "Hello ${{ inputs.username }}"
+
+    - shell: bash
+      run: echo "Running tests..."

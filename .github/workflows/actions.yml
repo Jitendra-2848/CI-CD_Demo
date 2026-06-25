@@ -1,0 +1,43 @@
+name: Github Actions Demo
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Name of the person to greet"
+        required: true
+
+jobs:
+  composite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Composite Action
+        uses: ./.github/actions/composite-action
+        with:
+          username: ${{ inputs.name }}
+
+  js_ts_workflow:
+    runs-on: ubuntu-latest
+    needs: composite
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: JS Action
+        uses: ./.github/actions/js-action
+        with:
+          username: ${{ inputs.name }}
+
+  container_action:
+    runs-on: ubuntu-latest
+    needs: js_ts_workflow
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Docker Action
+        uses: ./.github/actions/docker-action
+        with:
+          username: ${{ inputs.name }}

@@ -1,0 +1,14 @@
+name: Main Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        required: true
+        type: string
+
+jobs:
+  call_reusable:
+    uses: ./.github/workflows/reusable.yml
+    with:
+      username: ${{ inputs.name }}
