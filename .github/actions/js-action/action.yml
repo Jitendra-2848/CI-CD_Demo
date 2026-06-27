@@ -7,5 +7,12 @@ inputs:
     required: true
 
 runs:
-  using: node20
-  main: dist/index.js
+  using: composite
+  steps:
+    - name: Install dependencies
+      shell: bash
+      run: npm --prefix ${{ github.action_path }} install
+
+    - name: Run JS Action
+      shell: bash
+      run: node ${{ github.action_path }}/dist/index.js
