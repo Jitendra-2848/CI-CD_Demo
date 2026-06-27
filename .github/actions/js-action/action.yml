@@ -16,3 +16,5 @@ runs:
     - name: Run JS Action
       shell: bash
       run: node ${{ github.action_path }}/dist/index.js
+      env:
+        INPUT_USERNAME: ${{ inputs.username }}
