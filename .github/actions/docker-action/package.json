@@ -1,0 +1,8 @@
+{
+  "name": "docker-action",
+  "module": "index.ts",
+  "type": "module",
+  "dependencies": {
+    "@actions/core": "^3.0.1"
+  }
+}

@@ -6,6 +6,8 @@ on:
       name:
         description: "Name of the person to greet"
         required: true
+        type: string
+        default: "World"
 
 jobs:
   composite:

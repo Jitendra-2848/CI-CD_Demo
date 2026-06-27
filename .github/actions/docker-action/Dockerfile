@@ -2,11 +2,10 @@ FROM oven/bun:1-alpine
 
 WORKDIR /app
 
-COPY package.json bun.lock ./
-RUN bun install --frozen-lockfile
+COPY package.json ./
+RUN bun install
 
-COPY . .
+COPY entrypoint.sh index.ts ./
+RUN chmod +x entrypoint.sh
 
-EXPOSE 8000
-
-CMD ["bun", "run", "index.ts"]
+ENTRYPOINT ["/app/entrypoint.sh"]
